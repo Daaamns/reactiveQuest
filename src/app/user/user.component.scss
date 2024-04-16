@@ -1,0 +1,11 @@
+.submitted .ng-valid:not(form) {
+  border: 2px solid green;
+}
+
+.submitted .ng-invalid:not(form) {
+  border: 2px solid red;
+}
+
+.submitted .i:not(form) {
+  border: none;
+}

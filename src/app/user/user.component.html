@@ -1,0 +1,43 @@
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmitNewUser()"
+  [ngClass]="{ submitted: submitted }"
+>
+  <div>
+    <label>
+      Username :
+      <input type="text" formControlName="userName" required />
+      <div [hidden]="!userForm.controls['userName'].errors?.['usernameExists']">
+        username already exists.
+      </div>
+    </label>
+  </div>
+  <div>
+    <label>
+      Email :
+      <input type="text" formControlName="email" />
+      <div>Errors</div>
+    </label>
+  </div>
+  <div formGroupName="credentials" class="i">
+    <div>
+      <label>
+        Password :
+        <input type="text" formControlName="password" />
+      </label>
+    </div>
+    <div>
+      <label>
+        Confirm Password :
+        <input type="text" formControlName="confirmPassword" />
+        <div
+          *ngIf="submitted"
+          [hidden]="!userForm.get('credentials')?.errors?.['mismatch']"
+        >
+          {{ userForm.get("credentials")?.errors?.['mismatch']?.rules }}
+        </div>
+      </label>
+    </div>
+  </div>
+  <button tyoe="submit">Submit</button>
+</form>
